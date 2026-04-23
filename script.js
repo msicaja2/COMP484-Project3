@@ -36,10 +36,22 @@ toggleButton.setAttribute("data-action","status-toggle");
 highlightListItems();
 
 function highlightListItems() {
-    let listItems = document.querySelectorAll('#item-list li'); // select all items from item-list
+    //let listItems = document.querySelectorAll('#item-list li'); // select all items from item-list
 
+    /*
     for (let i = 0; i < listItems.length; ++i) {
         listItems[i].style.color = "blue";
+    } */
+
+    // From the itemList element (ul container) grab all <li> elements inside it
+    // listItems is an HTMLCollection
+    const listItems = itemList.getElementsByTagName("li");
+
+    // Use a for of loop to iterate over the iterable object "listItems"
+    // Go through each element in listItems one at a time and call it item
+    // listItems is iterable because it is an HTMLCollection
+    for (let item of listItems) {
+        item.style.color = "blue";
     }
 }
 
@@ -96,7 +108,14 @@ function startFlashing() {
 
     // Set the interval Id as what is returned by the setInterval function
     intervalId = setInterval (function() {
-        controlPanel.classList.toggle("hidden");
+        //controlPanel.classList.toggle("hidden");
+
+        if (controlPanel.classList.contains("hidden")) {
+            controlPanel.classList.remove("hidden");
+        }
+        else {
+            controlPanel.classList.add("hidden");
+        }
     }, 500);
 }
 
